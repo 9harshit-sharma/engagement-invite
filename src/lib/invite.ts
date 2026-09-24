@@ -71,7 +71,7 @@ export function parseInvite(
     if (storedDate && (!rest.dayNumber || rest.dayNumber === "12")) {
       parsed.dayNumber = storedDate
     }
-    if (parsed.personOneName.trim() === "Deepshikha") {
+    if (parsed.personOneName.trim() === "Aarya") {
       parsed.personOneName = base.personOneName
     }
     if (

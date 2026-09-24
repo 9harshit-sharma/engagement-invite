@@ -7,41 +7,30 @@ export function useSceneAutoplay({
   playing,
   autoplay,
   onSceneChange,
-  onFinish,
 }: {
   playing: boolean
   autoplay: boolean
   onSceneChange: (id: SceneId) => void
-  onFinish?: () => void
 }) {
   const onSceneChangeRef = useRef(onSceneChange)
-  const onFinishRef = useRef(onFinish)
 
   useEffect(() => {
     onSceneChangeRef.current = onSceneChange
   }, [onSceneChange])
 
   useEffect(() => {
-    onFinishRef.current = onFinish
-  }, [onFinish])
-
-  useEffect(() => {
     if (!playing || !autoplay) return
 
     let cancelled = false
-    let timer: ReturnType<typeof setTimeout> | null = null
+    let timer = 0
 
     const run = async () => {
       for (const item of SCENES) {
         if (cancelled) return
         onSceneChangeRef.current(item.id)
         await new Promise<void>((resolve) => {
-          timer = setTimeout(resolve, item.durationMs)
+          timer = window.setTimeout(resolve, item.durationMs)
         })
-      }
-
-      if (!cancelled) {
-        onFinishRef.current?.()
       }
     }
 
@@ -49,7 +38,7 @@ export function useSceneAutoplay({
 
     return () => {
       cancelled = true
-      if (timer) clearTimeout(timer)
+      window.clearTimeout(timer)
     }
   }, [autoplay, playing])
 }

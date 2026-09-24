@@ -1,6 +1,6 @@
 "use client"
 
-import { ReactNode, useEffect } from "react"
+import type { ReactNode } from "react"
 import { useState } from "react"
 import Image from "next/image"
 import { GoldDivider } from "@/components/gold-divider"
@@ -27,23 +27,7 @@ export function InviteScenes({
   letters?: "dh" | "hd"
 }) {
   const [autoplay, setAutoplay] = useState(true)
-    useEffect(() => {
-    setTimeout(() => {
-        playing = false;
-        setAutoplay(false);
-      }, )
-  }, [50000])
-  useSceneAutoplay({
-    playing,
-    autoplay,
-    onSceneChange,
-    onFinish: () => {
-      // Stop autoplay once all scenes have played
-      setAutoplay(false)
-      // Optionally also stop playing:
-      // if (playing) onSceneChange(scene) // or some "end" behavior
-    },
-  })
+  useSceneAutoplay({ playing, autoplay, onSceneChange })
 
   return (
     <div className="relative h-full w-full overflow-hidden" data-scene={scene}>

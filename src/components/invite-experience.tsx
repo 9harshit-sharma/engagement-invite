@@ -54,6 +54,7 @@ export function InviteExperience({
     const params = new URLSearchParams(window.location.search)
     setHostEdit(params.get("edit") === HOST_EDIT_QUERY)
   }, [])
+
   const letters = variant === "groom" ? "hd" : "dh"
 
   const replay = () => {
