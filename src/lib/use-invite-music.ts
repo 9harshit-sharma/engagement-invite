@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react"
 
-export const INVITE_MUSIC_SRC = "/audio/garden-evening.mp3"
+export const INVITE_MUSIC_SRC = "/audio/Jashn_E_Bahaara_Instrumental.mp3"
 export const MUSIC_MUTE_KEY = "palace-invite-music-muted"
 const TARGET_VOLUME = 0.46
 const FADE_IN_MS = 1600
